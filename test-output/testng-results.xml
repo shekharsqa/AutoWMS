@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testng-results skipped="0" failed="0" ignored="0" total="3" passed="3">
+  <reporter-output>
+  </reporter-output>
+  <suite name="Suite" duration-ms="34658" started-at="2022-01-26T17:45:03 IST" finished-at="2022-01-26T17:45:38 IST">
+    <groups>
+    </groups>
+    <test name="Test" duration-ms="34658" started-at="2022-01-26T17:45:03 IST" finished-at="2022-01-26T17:45:38 IST">
+      <class name="com.autowms.testcases.LoginPageTest">
+        <test-method status="PASS" signature="beforeSuite()[pri:0, instance:com.autowms.testcases.LoginPageTest@2f8f5f62]" name="beforeSuite" is-config="true" duration-ms="1594" started-at="2022-01-26T17:45:01 IST" finished-at="2022-01-26T17:45:03 IST">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- beforeSuite -->
+        <test-method status="PASS" signature="setup()[pri:0, instance:com.autowms.testcases.LoginPageTest@2f8f5f62]" name="setup" is-config="true" duration-ms="10839" started-at="2022-01-26T17:45:03 IST" finished-at="2022-01-26T17:45:14 IST">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- setup -->
+        <test-method status="PASS" signature="loginPageTest()[pri:1, instance:com.autowms.testcases.LoginPageTest@2f8f5f62]" name="loginPageTest" duration-ms="168" started-at="2022-01-26T17:45:14 IST" finished-at="2022-01-26T17:45:14 IST">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- loginPageTest -->
+        <test-method status="PASS" signature="tearDown(org.testng.ITestResult)[pri:0, instance:com.autowms.testcases.LoginPageTest@2f8f5f62]" name="tearDown" is-config="true" duration-ms="207" started-at="2022-01-26T17:45:15 IST" finished-at="2022-01-26T17:45:15 IST">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[[TestResult name=loginPageTest status=SUCCESS method=LoginPageTest.loginPageTest()[pri:1, instance:com.autowms.testcases.LoginPageTest@2f8f5f62] output={null}]]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- tearDown -->
+        <test-method status="PASS" signature="setup()[pri:0, instance:com.autowms.testcases.LoginPageTest@2f8f5f62]" name="setup" is-config="true" duration-ms="6884" started-at="2022-01-26T17:45:15 IST" finished-at="2022-01-26T17:45:22 IST">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- setup -->
+        <test-method status="PASS" signature="loginTest()[pri:2, instance:com.autowms.testcases.LoginPageTest@2f8f5f62]" name="loginTest" duration-ms="5968" started-at="2022-01-26T17:45:22 IST" finished-at="2022-01-26T17:45:28 IST">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- loginTest -->
+        <test-method status="PASS" signature="tearDown(org.testng.ITestResult)[pri:0, instance:com.autowms.testcases.LoginPageTest@2f8f5f62]" name="tearDown" is-config="true" duration-ms="204" started-at="2022-01-26T17:45:29 IST" finished-at="2022-01-26T17:45:29 IST">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[[TestResult name=loginTest status=SUCCESS method=LoginPageTest.loginTest()[pri:2, instance:com.autowms.testcases.LoginPageTest@2f8f5f62] output={null}]]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- tearDown -->
+        <test-method status="PASS" signature="setup()[pri:0, instance:com.autowms.testcases.LoginPageTest@2f8f5f62]" name="setup" is-config="true" duration-ms="7307" started-at="2022-01-26T17:45:29 IST" finished-at="2022-01-26T17:45:36 IST">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- setup -->
+        <test-method status="PASS" signature="sampleCase()[pri:3, instance:com.autowms.testcases.LoginPageTest@2f8f5f62]" name="sampleCase" duration-ms="4" started-at="2022-01-26T17:45:36 IST" finished-at="2022-01-26T17:45:36 IST">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- sampleCase -->
+        <test-method status="PASS" signature="tearDown(org.testng.ITestResult)[pri:0, instance:com.autowms.testcases.LoginPageTest@2f8f5f62]" name="tearDown" is-config="true" duration-ms="176" started-at="2022-01-26T17:45:37 IST" finished-at="2022-01-26T17:45:38 IST">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[[TestResult name=sampleCase status=SUCCESS method=LoginPageTest.sampleCase()[pri:3, instance:com.autowms.testcases.LoginPageTest@2f8f5f62] output={null}]]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- tearDown -->
+        <test-method status="PASS" signature="afterSuite()[pri:0, instance:com.autowms.testcases.LoginPageTest@2f8f5f62]" name="afterSuite" is-config="true" duration-ms="1950" started-at="2022-01-26T17:45:38 IST" finished-at="2022-01-26T17:45:40 IST">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- afterSuite -->
+      </class> <!-- com.autowms.testcases.LoginPageTest -->
+    </test> <!-- Test -->
+  </suite> <!-- Suite -->
+</testng-results>
