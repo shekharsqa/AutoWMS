@@ -11,7 +11,7 @@ import com.autowms.utility.ExtentManager;
 public class LoginPageTest extends BaseClass{
 	/*SH- This class is extending BaseClass, so we can directly user "driver" as this is already defined in baseClass.*/
 	
-	/*Verify the Image on Login Page -- Dummy Website: https://opensource-demo.orangehrmlive.com/index.php/auth/validateCredentials*/	
+	/*TestCase-1: Verify the Image on Login Page -- Dummy Website: https://opensource-demo.orangehrmlive.com/index.php/auth/validateCredentials*/	
 	@Test(priority=1)
 	public void loginPageTest() {
 		//test = extent.createTest("TestCaseName : loginPageTest"); 		/** This will move to ListenerClass, so that we dont have to write again and again in every @Test **/
@@ -20,6 +20,7 @@ public class LoginPageTest extends BaseClass{
 		Assert.assertTrue(imgElement.isDisplayed());		
 	}
 	
+	/*TestCase-2: */
 	@Test (priority=2)
 	public void loginTest() {
 		//test = extent.createTest("TestCaseName : loginTest");			/** This will move to ListenerClass, so that we dont have to write again and again in every @Test **/
@@ -37,6 +38,7 @@ public class LoginPageTest extends BaseClass{
 			//ExtentManager.test.pass("Login Test Successful.");
 	}
 	
+	/*TestCase-3: */
 	@Test (priority=3)
 		public void sampleCase() {
 			//test = extent.createTest("TestCaseName : sampleTest");		/** This will move to ListenerClass, so that we dont have to write again and again in every @Test **/
