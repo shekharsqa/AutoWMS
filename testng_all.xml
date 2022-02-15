@@ -4,9 +4,12 @@
 	<listeners>
 		<listener class-name="com.autowms.utility.ListenerClass"></listener>
 	</listeners>
-  <test thread-count="5" name="Test">
+  <test thread-count="5" name="Test_All">
+	<!-- <parameter name="browser" value="Chrome"></parameter> -->
+	<parameter name="browser" value="Edge"></parameter>
     <classes>
-      <class name="com.autowms.testcases.LoginPageTest"/>
+		<class name="com.autowms.testcases.IndexPageTest"/>
+      	<class name="com.autowms.testcases.LoginPageTest"/>
     </classes>
   </test> <!-- Test -->
 </suite> <!-- Suite -->

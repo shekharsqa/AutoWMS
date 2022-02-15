@@ -5,6 +5,7 @@ import java.io.IOException;
 import org.testng.ITestListener;
 import org.testng.ITestResult;
 
+import com.autowms.actiondriver.Action;
 import com.autowms.base.BaseClass;
 import com.aventstack.extentreports.MediaEntityBuilder;
 import com.aventstack.extentreports.Status;
@@ -12,6 +13,8 @@ import com.aventstack.extentreports.markuputils.ExtentColor;
 import com.aventstack.extentreports.markuputils.MarkupHelper;
 
 public class ListenerClass extends ExtentManager implements ITestListener {
+
+	Action action= new Action();
 
 	public void onTestStart(ITestResult result) {
 		ExtentManager.test = ExtentManager.extent.createTest(result.getName());
@@ -43,12 +46,9 @@ public class ListenerClass extends ExtentManager implements ITestListener {
 			
 			/** Way-3) SH- Use this for capture screenshot as Base64 and attach to report. **/
 			String pathString;
-			try {
-				pathString = BaseClass.getScreenShotAsbase64(BaseClass.driver, result.getName());
-				ExtentManager.test.addScreenCaptureFromBase64String(BaseClass.getBase64());
-			} catch (IOException e) {
-				e.printStackTrace();
-			}
+			//pathString = BaseClass.getScreenShotAsbase64(BaseClass.driver, result.getName());
+			//pathString = action.getScreenShotAsbase64(BaseClass.getDriver(), result.getName());
+			ExtentManager.test.addScreenCaptureFromBase64String(action.getBase64(BaseClass.getDriver()));
 			
 			
 		}
@@ -56,14 +56,22 @@ public class ListenerClass extends ExtentManager implements ITestListener {
 
 	public void onTestFailure(ITestResult result) {
 		if (result.getStatus() == ITestResult.FAILURE) {
-			ExtentManager.test.log(Status.FAIL,
-					MarkupHelper.createLabel(result.getName() + " - Test Case Failed", ExtentColor.RED));
-			ExtentManager.test.log(Status.FAIL,
-					MarkupHelper.createLabel(result.getThrowable() + " - Test Case Failed", ExtentColor.RED));
+			System.out.print(result.getName());
+			ExtentManager.test.log(Status.FAIL, MarkupHelper.createLabel(result.getName() + " - Test Case Failed", ExtentColor.RED));
+			ExtentManager.test.log(Status.FAIL,	MarkupHelper.createLabel(result.getThrowable() + " - Test Case Failed", ExtentColor.RED));
 			/* SH-Adding screenshot to report */
-			String pathString = BaseClass.screenShot(BaseClass.driver, result.getName());
-			ExtentManager.test.addScreenCaptureFromPath(pathString);
-
+				//String pathString = BaseClass.screenShot(BaseClass.driver, result.getName());
+				//ExtentManager.test.addScreenCaptureFromPath(pathString);
+			
+			/** Way-3) SH- Use this for capture screenshot as Base64 and attach to report. **/
+			//String pathString;
+			//pathString = BaseClass.getScreenShotAsbase64(BaseClass.driver, result.getName());
+			//pathString = action.getScreenShotAsbase64(BaseClass.getDriver(), result.getName());
+			
+			  ExtentManager.test.addScreenCaptureFromBase64String(action.getBase64(
+			  BaseClass.getDriver()));
+			 
+			
 		}
 	}
 
@@ -71,8 +79,18 @@ public class ListenerClass extends ExtentManager implements ITestListener {
 		if (result.getStatus() == ITestResult.SKIP) {
 			ExtentManager.test.log(Status.SKIP, "Skipped Test case is: " + result.getName());
 			/* SH-Adding screenshot to report */
-			String pathString = BaseClass.screenShot(BaseClass.driver, result.getName());
-			ExtentManager.test.addScreenCaptureFromPath(pathString);
+			/** Way-3) SH- Use this for capture screenshot as Base64 and attach to report. **/
+			String pathString;
+			//pathString = BaseClass.getScreenShotAsbase64(BaseClass.driver, result.getName());
+			//pathString = action.getScreenShotAsbase64(BaseClass.getDriver(), result.getName());
+			ExtentManager.test.addScreenCaptureFromBase64String(action.getBase64(BaseClass.getDriver()));
+			
+			//String pathString = BaseClass.screenShot(BaseClass.driver, result.getName());
+			/*
+			 * String pathString = BaseClass.screenShot(BaseClass.getDriver(),
+			 * result.getName()); ExtentManager.test.addScreenCaptureFromPath(pathString);
+			 */
+			
 		}
 	}
 

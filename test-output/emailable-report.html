@@ -9,12 +9,17 @@
 <table>
 <tr><th>Test</th><th># Passed</th><th># Skipped</th><th># Retried</th><th># Failed</th><th>Time (ms)</th><th>Included Groups</th><th>Excluded Groups</th></tr>
 <tr><th colspan="8">Suite</th></tr>
-<tr><td><a href="#t0">Test</a></td><td class="num">3</td><td class="num">0</td><td class="num">0</td><td class="num">0</td><td class="num">34,658</td><td></td><td></td></tr>
+<tr><td><a href="#t0">Test_All</a></td><td class="num">0</td><td class="num">0</td><td class="num">0</td><td class="num attn">2</td><td class="num">172,530</td><td></td><td></td></tr>
 </table>
-<table id='summary'><thead><tr><th>Class</th><th>Method</th><th>Start</th><th>Time (ms)</th></tr></thead><tbody><tr><th colspan="4">Suite</th></tr></tbody><tbody id="t0"><tr><th colspan="4">Test &#8212; passed</th></tr><tr class="passedeven"><td rowspan="3">com.autowms.testcases.LoginPageTest</td><td><a href="#m0">loginPageTest</a></td><td rowspan="1">1643199314269</td><td rowspan="1">168</td></tr><tr class="passedeven"><td><a href="#m1">loginTest</a></td><td rowspan="1">1643199322642</td><td rowspan="1">5968</td></tr><tr class="passedeven"><td><a href="#m2">sampleCase</a></td><td rowspan="1">1643199336841</td><td rowspan="1">4</td></tr></tbody>
+<table id='summary'><thead><tr><th>Class</th><th>Method</th><th>Start</th><th>Time (ms)</th></tr></thead><tbody><tr><th colspan="4">Suite</th></tr></tbody><tbody id="t0"><tr><th colspan="4">Test_All &#8212; failed</th></tr><tr class="failedeven"><td rowspan="1">com.autowms.testcases.IndexPageTest</td><td><a href="#m0">indexPageTest</a></td><td rowspan="1">1644489624886</td><td rowspan="1">11951</td></tr><tr class="failedodd"><td rowspan="1">com.autowms.testcases.LoginPageTest</td><td><a href="#m1">loginPageTest</a></td><td rowspan="1">1644489667233</td><td rowspan="1">8735</td></tr></tbody>
 </table>
-<h2>Test</h2><h3 id="m0">com.autowms.testcases.LoginPageTest#loginPageTest</h3><table class="result"><tr><th class="invisible"/></tr></table><p class="totop"><a href="#summary">back to summary</a></p>
-<h3 id="m1">com.autowms.testcases.LoginPageTest#loginTest</h3><table class="result"><tr><th class="invisible"/></tr></table><p class="totop"><a href="#summary">back to summary</a></p>
-<h3 id="m2">com.autowms.testcases.LoginPageTest#sampleCase</h3><table class="result"><tr><th class="invisible"/></tr></table><p class="totop"><a href="#summary">back to summary</a></p>
+<h2>Test_All</h2><h3 id="m0">com.autowms.testcases.IndexPageTest#indexPageTest</h3><table class="result"><tr class="param"><th>Parameter #1</th></tr><tr class="param stripe"><td>admin@xyz.com</td></tr><tr><th>Exception</th></tr><tr><td><div class="stacktrace">java.lang.AssertionError: expected [true] but found [false]
+	at com.autowms.testcases.IndexPageTest.indexPageTest(IndexPageTest.java:51)
+	at java.util.ArrayList.forEach(ArrayList.java:1259)
+... Removed 31 stack frames</div></td></tr></table><p class="totop"><a href="#summary">back to summary</a></p>
+<h3 id="m1">com.autowms.testcases.LoginPageTest#loginPageTest</h3><table class="result"><tr class="param"><th>Parameter #1</th><th>Parameter #2</th></tr><tr class="param stripe"><td>admin@xyz.com</td><td>admin@123</td></tr><tr><th colspan="2">Exception</th></tr><tr><td colspan="2"><div class="stacktrace">java.lang.NullPointerException
+	at com.autowms.testcases.LoginPageTest.loginPageTest(LoginPageTest.java:46)
+	at java.util.ArrayList.forEach(ArrayList.java:1259)
+... Removed 27 stack frames</div></td></tr></table><p class="totop"><a href="#summary">back to summary</a></p>
 </body>
 </html>

@@ -4,19 +4,27 @@
   <listeners>
     <listener class-name="com.autowms.utility.ListenerClass"/>
   </listeners>
-  <test thread-count="5" name="Test(failed)">
+  <test thread-count="5" name="Test_All(failed)">
+    <parameter name="browser" value="Edge"/>
     <classes>
       <class name="com.autowms.testcases.LoginPageTest">
         <methods>
-          <include name="sampleCase"/>
-          <include name="loginTest"/>
-          <include name="afterSuite"/>
           <include name="setup"/>
-          <include name="loginPageTest"/>
           <include name="tearDown"/>
-          <include name="beforeSuite"/>
+          <include name="loadConfig"/>
+          <include name="afterSuite"/>
+          <include name="loginPageTest" invocation-numbers="0"/>
         </methods>
       </class> <!-- com.autowms.testcases.LoginPageTest -->
+      <class name="com.autowms.testcases.IndexPageTest">
+        <methods>
+          <include name="tearDown"/>
+          <include name="setup"/>
+          <include name="indexPageTest" invocation-numbers="0"/>
+          <include name="loadConfig"/>
+          <include name="afterSuite"/>
+        </methods>
+      </class> <!-- com.autowms.testcases.IndexPageTest -->
     </classes>
-  </test> <!-- Test(failed) -->
+  </test> <!-- Test_All(failed) -->
 </suite> <!-- Failed suite [Suite] -->

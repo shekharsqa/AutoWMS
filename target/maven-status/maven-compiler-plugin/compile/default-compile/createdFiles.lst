@@ -1,1 +1,11 @@
+com\autowms\pageobjects\LoginPage.class
+com\autowms\utility\ExtentManager.class
+com\autowms\utility\Log.class
+com\autowms\pageobjects\IndexPage.class
+com\autowms\utility\NewExcelLibrary.class
+com\autowms\dataprovider\DataProviders.class
 com\autowms\base\BaseClass.class
+com\autowms\actioninterface\ActionInterface.class
+com\autowms\actiondriver\Action.class
+com\autowms\pageobjects\HomePage.class
+com\autowms\utility\ListenerClass.class

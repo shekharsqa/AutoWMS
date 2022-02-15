@@ -6,10 +6,14 @@ package com.autowms.base;
 import java.awt.Desktop;
 import java.io.File;
 import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.net.MalformedURLException;
+import java.net.URL;
 import java.text.SimpleDateFormat;
 import java.util.Base64;
 import java.util.Date;
+import java.util.concurrent.TimeUnit;
 
 import org.apache.commons.io.FileUtils;
 import org.apache.poi.util.IOUtils;
@@ -17,6 +21,13 @@ import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.chrome.ChromeOptions;
+import org.openqa.selenium.edge.EdgeDriver;
+import org.openqa.selenium.firefox.FirefoxDriver;
+import org.openqa.selenium.ie.InternetExplorerDriver;
+import org.openqa.selenium.remote.DesiredCapabilities;
+import org.openqa.selenium.remote.RemoteWebDriver;
+
 import org.testng.ITestResult;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.AfterSuite;
@@ -32,78 +43,90 @@ import com.aventstack.extentreports.markuputils.MarkupHelper;
 //import com.aventstack.extentreports.reporter.ExtentHtmlReporter;
 import com.aventstack.extentreports.reporter.ExtentSparkReporter;
 import com.aventstack.extentreports.reporter.configuration.Theme;
+import com.google.common.util.concurrent.Uninterruptibles;
 
+import io.github.bonigarcia.wdm.WebDriverManager;
+
+import java.util.Properties;
+import org.apache.log4j.xml.DOMConfigurator;
 public class BaseClass {
 	
-	public static WebDriver driver;
+	public static Properties prop;
 	
-		
+	// Declare ThreadLocal Driver
+	//public static ThreadLocal<RemoteWebDriver> driver = new ThreadLocal<>();
+	public static ThreadLocal<WebDriver> driver = new ThreadLocal<>();
+	
+	//public static WebDriver driver;
+	
+	public static WebDriver getDriver() {
+		// Get Driver from threadLocalmap
+		return driver.get();
+	}	
+	
+	
+	//loadConfig method is to load the configuration
 	@BeforeSuite
-	public void beforeSuite() throws IOException {
+	public void loadConfig() throws IOException {
 		ExtentManager.setExtent();
+		DOMConfigurator.configure("log4j.xml");
+
+		try {
+			prop = new Properties();
+			FileInputStream ip = new FileInputStream(
+					System.getProperty("user.dir") + "\\Configuration\\Config.properties");
+			System.out.print(System.getProperty("user.dir") + "\\Configuration\\Config.properties");
+			prop.load(ip);
+
+		} catch (FileNotFoundException e) {
+			e.printStackTrace();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
 	}
+
 	
+	public void launchApp(String browserName) {
+		// String browserName = prop.getProperty("browser");
+		if (browserName.equalsIgnoreCase("Chrome")) {
+			  //WebDriverManager.chromedriver().setup(); // Set Browser to ThreadLocalMap
+			  WebDriverManager.chromedriver().driverVersion("99.0.4844.17").setup();
+			  driver.set(new ChromeDriver());	 
+			
+		} else if (browserName.equalsIgnoreCase("FireFox")) {
+			WebDriverManager.firefoxdriver().setup();
+			driver.set(new FirefoxDriver());
+		} else if (browserName.equalsIgnoreCase("IE")) {
+			WebDriverManager.iedriver().setup();
+			driver.set(new InternetExplorerDriver());
+		} else if (browserName.equalsIgnoreCase("Edge")) {
+			WebDriverManager.edgedriver().setup();
+			driver.set(new EdgeDriver());
+		}
+		
+		//Maximize the screen
+		getDriver().manage().window().maximize();
+		//Delete all the cookies
+		//getDriver().manage().deleteAllCookies();
+		//Implicit TimeOuts
+		/*
+		 * getDriver().manage().timeouts().implicitlyWait
+		 * (Integer.parseInt(prop.getProperty("implicitWait")),TimeUnit.SECONDS);
+		 */
+		//PageLoad TimeOuts
+		/*
+		 * getDriver().manage().timeouts().pageLoadTimeout
+		 * (Integer.parseInt(prop.getProperty("pageLoadTimeOut")),TimeUnit.SECONDS);
+		 */
+		//Launching the URL
+		getDriver().get(prop.getProperty("url"));
+	}
+
 	@AfterSuite
 	public void afterSuite() throws IOException {
 		ExtentManager.endReport();
-	}
+		}	
 	
-	
-	@BeforeMethod
-	 public void setup() {
-		   System.setProperty("webdriver.chrome.driver", "E:\\SV_QA\\AutoSH\\AutoSJSH\\SJSHDrivers\\Chrome\\98\\chromedriver.exe");
-		   driver = new ChromeDriver();
-		   driver.manage().window().maximize();
-		   driver.get("https://opensource-demo.orangehrmlive.com/index.php/auth/validateCredentials");
-		 }
-	
-	@AfterMethod
-	public void tearDown(ITestResult result) throws IOException {
-		  driver.close();
-		 } 
-	
-	
-/* ******** UserDefined Methods ********** */
-	
-/* ScreenShot Way-1) Screenshot saved as PNG/JPG and then attach */
-	public static String screenShot(WebDriver driver, String filename) {
-		String dateName = new SimpleDateFormat("yyyyMMddhhmmss").format(new Date());
-		TakesScreenshot takesScreenshot = (TakesScreenshot) driver;
-		File source = takesScreenshot.getScreenshotAs(OutputType.FILE);
-		String destination = System.getProperty("user.dir") + "\\ScreenShots\\" + filename + "_" + dateName + ".png";
 
-		try {
-			FileUtils.copyFile(source, new File(destination));
-		} catch (Exception e) {
-			e.getMessage();
-		}
-		return destination;
-	}
-	
-/* ScreenShot Way-2) Capture screenshot as PNG/JPG  convert to Base64 and then attach with report. */
-	public static String getScreenShotAsbase64(WebDriver driver, String filename) throws IOException {
-		String dateName = new SimpleDateFormat("yyyyMMddhhmmss").format(new Date());
-		TakesScreenshot takesScreenshot = (TakesScreenshot) driver;
-		File source = takesScreenshot.getScreenshotAs(OutputType.FILE);
-		String destination = System.getProperty("user.dir") + "\\ScreenShots\\" + filename + "_" + dateName + ".png";
-
-			FileUtils.copyFile(source, new File(destination));
-			byte[] imageBytes = IOUtils.toByteArray(new FileInputStream(destination));
-			return Base64.getEncoder().encodeToString(imageBytes);
-	}
-
-/* ScreenShot Way-3) Capture screenshot a Base64 and attach with report */
-	public static String getBase64() {
-		return ((TakesScreenshot) driver).getScreenshotAs(OutputType.BASE64);
-	}
-	
-	
-	
-	
-	public String getCurrentTime() {
-		String currentDate = new SimpleDateFormat("yyyy-MM-dd-hhmmss").format(new Date());
-		return currentDate;
-	}
-	
 	
 }
